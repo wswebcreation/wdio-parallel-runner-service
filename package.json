@@ -6,7 +6,7 @@
     "scripts": {
         "clean": "rimraf coverage build .tmp",
         "compile": "babel src/ --ignore **/*.spec.js -d build/",
-        "test.lint": "eslint ./src",
+        "test.lint": "eslint ./src ./tests",
         "test.coverage": "jest --coverage",
         "watch": "npm run compile -- --watch",
         "release": "np",
@@ -40,7 +40,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-push": "npm run test.eslint"
+            "pre-push": "npm run test.lint"
         }
     },
     "jest": {

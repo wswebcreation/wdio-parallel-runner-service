@@ -1,10 +1,10 @@
-import {findCalleeNameIndexes, isValidCalleeName} from '../src/ast.methods';
+import { findCalleeNameIndexes, isValidCalleeName } from '../src/ast.methods';
 
 describe('AST Methods', () => {
     describe('isValidCalleeName', () => {
         it('should return false for a not valid node type', () => {
             expect(isValidCalleeName(
-                {type: 'ImportDeclaration'},
+                { type: 'ImportDeclaration' },
                 'describe',
             )).toBeFalsy();
         });
@@ -18,7 +18,7 @@ describe('AST Methods', () => {
                         callee: {
                             type: 'Identifier',
                             name: 'foo'
-                        },
+                        }
                     }
                 },
                 'describe',
@@ -34,7 +34,7 @@ describe('AST Methods', () => {
                         callee: {
                             type: 'Identifier',
                             name: 'describe'
-                        },
+                        }
                     }
                 },
                 'describe',
@@ -50,7 +50,7 @@ describe('AST Methods', () => {
                         callee: {
                             type: 'Identifier',
                             name: 'fdescribe'
-                        },
+                        }
                     }
                 },
                 'describe',
@@ -67,7 +67,7 @@ describe('AST Methods', () => {
                         callee: {
                             type: 'Identifier',
                             name: 'xdescribe'
-                        },
+                        }
                     }
                 },
                 'describe',
@@ -83,7 +83,7 @@ describe('AST Methods', () => {
                         callee: {
                             type: 'Identifier',
                             name: 'test'
-                        },
+                        }
                     }
                 },
                 '(describe|test)',
@@ -96,32 +96,32 @@ describe('AST Methods', () => {
             expect(findCalleeNameIndexes(
                 [
                     {
-                        type: "ImportDeclaration",
+                        type: 'ImportDeclaration'
                     },
                     {
-                        type: "ExpressionStatement",
+                        type: 'ExpressionStatement',
                         expression: {
-                            type: "CallExpression",
+                            type: 'CallExpression',
                             callee: {
-                                type: "Identifier",
-                                name: "describe"
-                            },
+                                type: 'Identifier',
+                                name: 'describe'
+                            }
                         }
                     },
                     {
-                        type: "ImportDeclaration",
+                        type: 'ImportDeclaration'
                     },
                     {
-                        type: "ImportDeclaration",
+                        type: 'ImportDeclaration'
                     },
                     {
-                        type: "ExpressionStatement",
+                        type: 'ExpressionStatement',
                         expression: {
-                            type: "CallExpression",
+                            type: 'CallExpression',
                             callee: {
-                                type: "Identifier",
-                                name: "describe"
-                            },
+                                type: 'Identifier',
+                                name: 'describe'
+                            }
                         }
                     }
                 ],
@@ -132,10 +132,10 @@ describe('AST Methods', () => {
         it('should return an empty array of indexes for none matching callee names', () => {
             expect(findCalleeNameIndexes(
                 [
-                    {type: "ImportDeclaration"},
-                    {type: "ImportDeclaration"},
-                    {type: "ImportDeclaration"},
-                    {type: "ImportDeclaration"},
+                    { type: 'ImportDeclaration' },
+                    { type: 'ImportDeclaration' },
+                    { type: 'ImportDeclaration' },
+                    { type: 'ImportDeclaration' }
                 ],
                 'describe',
             )).toEqual([]);

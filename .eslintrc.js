@@ -8,13 +8,19 @@ module.exports = {
     node: true,
     es6: true
   },
+  globals:{
+    describe: true,
+    it: true,
+    expect: true,
+    jest: true,
+  },
   parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 2016,
     sourceType: 'module'
   },
   rules: {
-    'comma-dangle': ['error', 'always'],
+    'comma-dangle': ['error', 'never'],
     quotes: ['error', 'single'],
     indent: [2, 4],
 

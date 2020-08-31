@@ -1,6 +1,6 @@
-import {cloneDeep} from 'lodash';
-import {transformFromAstSync} from '@babel/core';
-import {ensureFileSync, writeFileSync} from 'fs-extra';
+import { cloneDeep } from 'lodash';
+import { transformFromAstSync } from '@babel/core';
+import { ensureFileSync, writeFileSync } from 'fs-extra';
 
 function createSingleTestFiles (ast, describeIndex, itIndexes, spec) {
     itIndexes.forEach((currentItIndex, index) => {
@@ -17,7 +17,6 @@ function createSingleTestFiles (ast, describeIndex, itIndexes, spec) {
         describe.expression.arguments[1].body.body = describeArgs.filter(
             (arg, index) => index === currentItIndex || !itIndexes.includes(index)
         );
-
         const newCode = transformFromAstSync(newAst).code;
         ensureFileSync(`${spec}.${itOfIts}.js`);
         writeFileSync(`${spec}.${itOfIts}.js`, newCode);

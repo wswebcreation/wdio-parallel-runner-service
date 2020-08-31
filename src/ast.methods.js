@@ -24,12 +24,13 @@ function isValidCalleeName(node, calleeName) {
  * @returns {number[]}
  */
 function findCalleeNameIndexes(array, calleeName) {
-    return array.reduce((array, node, index) =>
-        isValidCalleeName(node, calleeName) ? [...array, index,] : array, []
+    return array.reduce(
+        (array, node, index) => isValidCalleeName(node, calleeName) ? [...array, index] : array,
+        [],
     );
 }
 
 export {
     findCalleeNameIndexes,
-    isValidCalleeName,
+    isValidCalleeName
 }

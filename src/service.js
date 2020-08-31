@@ -1,9 +1,9 @@
-import {ConfigParser,} from '@wdio/config';
-import {readFileSync, removeSync,} from 'fs-extra';
-import {parseSync,} from '@babel/core';
+import { ConfigParser } from '@wdio/config';
+import { readFileSync, removeSync } from 'fs-extra';
+import { parseSync } from '@babel/core';
 import logger from '@wdio/logger';
-import {findCalleeNameIndexes, findItIndex} from './ast.methods';
-import {createSingleTestFiles} from './utils';
+import { findCalleeNameIndexes } from './ast.methods';
+import { createSingleTestFiles } from './utils';
 
 const log = logger('wdio-parallel-runner-service')
 

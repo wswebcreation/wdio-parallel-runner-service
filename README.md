@@ -165,6 +165,23 @@ describe('Foo (3-3)', () => {
 });
 ```
 
+## Temporary files
+As you might have read in [What is supported](#what-is-supported) the test-file is being sliced into multiple files with single tests in them.
+To make this work this module will:
+
+- create temporary copies of the original file next to the original file, but with post-fix `{current-of}.js` which will result in:
+    `original.spec.js.1-2.js`\
+    `original.spec.js.2-2.js`\
+    ![Temporary files](./docs/assets/temp-files.png)
+- Alter the initial describe name with a post-fix ` (current-of)` resulting in
+    `describe('foo (1-2)', ()=>{});`\
+    `describe('foo (2-2)', ()=>{});`
+
+The temporary files will be removed when the tests have been executed.
+
+> NOTE: If WebdriverIO breaks somewhere before the test have been finished you might have a bunch of extra files in your folder
+> next to your original folder. There is currently no solution for this.
+
 ## What is not supported (yet)!
 ## TypeScript
 This module currently doesn't support TypeScript
@@ -224,8 +241,14 @@ describe('Foo (2-2)', () => {
 });
 ```
 
+### Clean up temporary files
+If WebdriverIO breaks somewhere before the test have been finished you might have a bunch of extra files in your folder
+next to your original folder. There is currently no solution for this.
+
 ## TODO
 - [ ] Add support to split TypeScript files, see [TypeScript](#typescript)
 - [ ] Add support to run Cucumber tests in parallel by splitting them up
 - [ ] Add support for multiple and or nested `describes`
 - [ ] Add support for conditional `it`s, see [Conditional its](#conditional-its)
+- [ ] Think of a better way to store the temporary files.
+This is currently difficult because we don't know the proper reference to the imports/page-objects and so on
