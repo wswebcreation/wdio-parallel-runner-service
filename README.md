@@ -24,7 +24,7 @@ In this case you are only using a max of 56.
 
 When you use this module you can easily debug your tests, take for example the output of the spliced testcase from above.
 
-![Less webdirver commands](./docs/assets/single-it.png)
+![Less WebDriver commands](./docs/assets/single-it.png)
 
 And you are using your concurrency to the max
 
