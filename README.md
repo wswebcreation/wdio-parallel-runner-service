@@ -187,7 +187,7 @@ The temporary files will be removed when the tests have been executed.
 This module currently doesn't support TypeScript
 
 ### Conditional its
-There are situations where you would can a tests like this.
+There are situations where you can have a test like this.
 
 ```js
 describe('Foo', () => {
