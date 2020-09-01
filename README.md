@@ -15,7 +15,7 @@ you can get a lot of webdriver commands making it harder to debug. In the below 
 (which is not a lot, but we've seen much more). When the test fails it is hard to determine which command or which test made the
 build fail.
 
-![More webdirver commands](./docs/assets/all-tests.png)
+![More WebDriver commands](./docs/assets/all-tests.png)
 
 Secondly you are not optimally using your concurrency, especially if you have for example 100 concurrent sessions which you can use.
 In this case you are only using a max of 56.
