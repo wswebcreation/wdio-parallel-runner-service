@@ -11,7 +11,7 @@ WebdriverIO Parallel Runner
 ## Why this module
 By default WebdriverIO, together with Mocha, Jasmine or Cucumber, can only run tests in parallel based on a test-file,
 not based on a single test within a test-file. When you are running your tests in for example a cloud service like Sauce Labs,
-you can get a lot of webdriver commands making it harder to debug. In the below image you see 63 webdriver commands
+you can get a lot of WebDriver commands making it harder to debug. In the below image you see 63 WebDriver commands
 (which is not a lot, but we've seen much more). When the test fails it is hard to determine which command or which test made the
 build fail.
 
