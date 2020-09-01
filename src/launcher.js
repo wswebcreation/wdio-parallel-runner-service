@@ -5,10 +5,13 @@ import logger from '@wdio/logger';
 import { findCalleeNameIndexes } from './ast.methods';
 import { createSingleTestFiles } from './utils';
 
-const log = logger('wdio-parallel-runner-service')
+const log = logger('wdio-parallel-runner-service');
 
 export default class ParallelRunnerLauncher {
-    onPrepare(config) {
+    constructor (options, capabilities, config) {
+        this.config = config;
+    }
+    onPrepare() {
         /**
          * Challenges:
          * - babel / typescript
@@ -19,13 +22,13 @@ export default class ParallelRunnerLauncher {
         const configParser = new ConfigParser();
 
         // Get the specs
-        const specs = config.specs;
-        const exclude = config.exclude;
+        const specs = this.config.specs;
+        const exclude = this.config.exclude;
         const currentSpecs = configParser.getSpecs(specs, exclude);
 
         // Make a copy of the original spec and empty the current one
-        config.originalSpecs = config.specs;
-        config.specs = [];
+        this.config.originalSpecs = this.config.specs;
+        this.config.specs = [];
 
         // Now iterate over each spec and split it into single it's per file
         currentSpecs.forEach(spec => {
@@ -47,19 +50,25 @@ export default class ParallelRunnerLauncher {
                 createSingleTestFiles(ast, describeIndex, itIndexes, spec);
                 // Push the new specs into the config
                 itIndexes.forEach(
-                    (currentItIndex, index) => config.specs.push(`${spec}.${++index}-${itIndexes.length}.js`)
+                    (currentItIndex, index) => this.config.specs.push(`${spec}.${++index}-${itIndexes.length}.js`)
                 );
             } else {
-                log.warn(` WARNING, THIS SPEC FILE: '${spec}' CONTAINS MULTIPLE DESCRIBES AND CAN NOT BE SPLIT!`);
-                config.specs.push(spec);
+                log.warn(`WARNING, THIS SPEC FILE: '${spec}' CONTAINS MULTIPLE DESCRIBES AND CAN NOT BE SPLIT!`);
+                this.config.specs.push(spec);
             }
         });
     }
 
-    onComplete(exitCode, config) {
-        // When done remove the files and clean up the config.specs
-        config.specs.forEach(spec => removeSync(spec));
-        config.specs = config.originalSpecs;
-        delete config.originalSpecs;
+    onComplete() {
+        this.config.specs.forEach(spec => {
+            log.info(`Trying to remove temporary file: '${spec}'.`);
+
+            try {
+                removeSync(spec);
+            } catch (error){
+                log.warn(`Not able to remove temporary file: '${spec}' due to an error.`);
+                log.warn(error);
+            }
+        });
     }
 }

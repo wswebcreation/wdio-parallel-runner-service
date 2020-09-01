@@ -1,3 +1,3 @@
-import WdioParallelRunnerLauncherService from './service';
+import WdioParallelRunnerLauncherService from './launcher';
 
 export const launcher = WdioParallelRunnerLauncherService;

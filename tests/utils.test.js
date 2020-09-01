@@ -7,7 +7,7 @@ import {
     transformFromAstSyncOne,
     transformFromAstSyncThree,
     transformFromAstSyncTwo
-} from './mocks';
+} from './__mocks__/files';
 
 jest.mock('fs-extra');
 jest.mock('lodash');
