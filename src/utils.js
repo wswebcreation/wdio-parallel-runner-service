@@ -1,8 +1,8 @@
-import { cloneDeep } from 'lodash';
+import cloneDeep from 'lodash.clonedeep';
 import { transformFromAstSync } from '@babel/core';
 import { ensureFileSync, writeFileSync } from 'fs-extra';
 
-function createSingleTestFiles (ast, describeIndex, itIndexes, spec) {
+export function createSingleTestFiles(ast, describeIndex, itIndexes, spec) {
     itIndexes.forEach((currentItIndex, index) => {
         const itOfIts = `${++index}-${itIndexes.length}`;
         const newAst = cloneDeep(ast);
@@ -21,8 +21,4 @@ function createSingleTestFiles (ast, describeIndex, itIndexes, spec) {
         ensureFileSync(`${spec}.${itOfIts}.js`);
         writeFileSync(`${spec}.${itOfIts}.js`, newCode);
     });
-}
-
-export {
-    createSingleTestFiles
 }

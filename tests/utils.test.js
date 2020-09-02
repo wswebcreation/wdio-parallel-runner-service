@@ -1,5 +1,5 @@
 import * as fs from 'fs-extra';
-import * as _ from 'lodash';
+import cloneDeep from 'lodash.clonedeep';
 import * as babel from '@babel/core';
 import { createSingleTestFiles } from '../src/utils';
 import {
@@ -10,14 +10,14 @@ import {
 } from './__mocks__/files';
 
 jest.mock('fs-extra');
-jest.mock('lodash');
+jest.mock('lodash.clonedeep');
 jest.mock('@babel/core');
 
 describe('utils', () => {
     describe('createSingleTestFiles', () => {
         it('should be calling all internal methods', () => {
             const spec = 'path/to/something.js';
-            _.cloneDeep.mockReturnValue(ast);
+            cloneDeep.mockReturnValue(ast);
             babel.transformFromAstSync
                 .mockReturnValueOnce(transformFromAstSyncOne)
                 .mockReturnValueOnce(transformFromAstSyncTwo)
@@ -25,7 +25,7 @@ describe('utils', () => {
 
             createSingleTestFiles(ast, [3], [1, 2, 3], spec);
 
-            expect(_.cloneDeep).toHaveBeenCalledTimes(3);
+            expect(cloneDeep).toHaveBeenCalledTimes(3);
             expect(babel.transformFromAstSync).toHaveBeenCalledTimes(3);
             expect(babel.transformFromAstSync).toHaveBeenCalledWith(ast);
             expect(fs.ensureFileSync).toHaveBeenCalledTimes(3);

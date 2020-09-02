@@ -36,37 +36,11 @@
         "@wdio/config": "^6.1.14",
         "@wdio/logger": "^6.0.16",
         "fs-extra": "^9.0.1",
-        "lodash": "^4.17.20"
+        "lodash.clonedeep": "^4.5.0"
     },
     "husky": {
         "hooks": {
             "pre-push": "npm run test.lint"
         }
-    },
-    "jest": {
-        "testMatch": [
-            "<rootDir>/tests/**/*.test.js"
-        ],
-        "testPathIgnorePatterns": [
-            "<rootDir>/node_modules/"
-        ],
-        "collectCoverageFrom": [
-            "<rootDir>/src/**/*.js"
-
-        ],
-        "coverageDirectory": "./coverage/",
-        "collectCoverage": true,
-        "coverageThreshold": {
-            "global": {
-                "branches": 100,
-                "functions": 100,
-                "lines": 100,
-                "statements": 100
-            }
-        },
-        "testEnvironment": "node",
-        "coveragePathIgnorePatterns": [
-            "node_modules/"
-        ]
     }
 }

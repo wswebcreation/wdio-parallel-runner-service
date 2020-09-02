@@ -3,6 +3,7 @@ WebdriverIO Parallel Runner
 
 > WebdriverIO Parallel Runner Service provides you the option to run each test in a test-file as a single test for optimizing parallelization.
 > - This can only be used with Jasmine and Mocha see [TODO](#todo)
+> - **You can only run tests in parallel if each test is autonomous and has its own state**
 > - Needs to follow a certain structure to work, see [What is supported](#what-is-supported)
 > - Currently **DOES NOT** support **MULTIPLE** or **NESTED** describes
 >
@@ -64,10 +65,20 @@ module.exports = {
 ```
 
 ## What is supported
+> **NOTE:** Each tests in a test-file needs to be autonomous, meaning it needs to have its own state. If you've written your tests
+> in such a way that testcase 2 relies on the outcome of test 1 then this module will not work for you.
+
+This module will do the following:
+- read all test files before starting all workers
+- determine for each test files if it has the proper structure (see below)
+- determine the amount of tests in the test file and make a copy of the file for each test
+- after the file is copied it will only keep 1 (unique) test in each file and preserves all hooks (`before|beforeEach|beforeAll|after|afterEach|afterAll`)
+- start a worker for each test file and start running
+
 Tests need to have a structure like this.
 
 ```js
-import Foo from './foo'; // const Foo = require('foo');
+const Foo = require('foo');
 
 describe('Foo', () => { // `fdescribe` or `xdecribe` are also supported
     before(() => { // optional
@@ -114,7 +125,7 @@ The above code will be split into **THREE** files, independent of `it|fit|xit` a
 
 ```js
 // File one
-import Foo from './foo'; // const Foo = require('foo');
+const Foo = require('foo');
 
 describe('Foo (1-3)', () => {
     // all hooks will be copied
@@ -131,7 +142,7 @@ describe('Foo (1-3)', () => {
 });
 
 // File two
-import Foo from './foo'; // const Foo = require('foo');
+const Foo = require('foo');
 
 describe('Foo (2-3)', () => {
     // all hooks will be copied
@@ -148,7 +159,7 @@ describe('Foo (2-3)', () => {
 });
 
 // File three:
-import Foo from './foo'; // const Foo = require('foo');
+const Foo = require('foo');
 
 describe('Foo (3-3)', () => {
     // all hooks will be copied

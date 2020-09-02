@@ -6,7 +6,7 @@
  *
  * @returns {boolean}
  */
-function isValidCalleeName(node, calleeName) {
+export function isValidCalleeName(node, calleeName) {
     const calleeNameRegex = new RegExp(`(.?|x|f)${calleeName}`);
 
     return node.type === 'ExpressionStatement'
@@ -23,14 +23,9 @@ function isValidCalleeName(node, calleeName) {
  *
  * @returns {number[]}
  */
-function findCalleeNameIndexes(array, calleeName) {
+export function findCalleeNameIndexes(array, calleeName) {
     return array.reduce(
         (array, node, index) => isValidCalleeName(node, calleeName) ? [...array, index] : array,
         [],
     );
-}
-
-export {
-    findCalleeNameIndexes,
-    isValidCalleeName
 }
