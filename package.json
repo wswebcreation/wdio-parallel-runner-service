@@ -21,10 +21,10 @@
     "author": "wswebcreation",
     "license": "MIT",
     "devDependencies": {
-        "@babel/cli": "^7.10.5",
-        "@babel/preset-env": "^7.11.0",
+        "@babel/cli": "^7.11.5",
+        "@babel/preset-env": "^7.11.5",
         "babel-eslint": "^10.1.0",
-        "eslint": "^7.7.0",
+        "eslint": "^7.8.1",
         "eslint-plugin-import": "^2.22.0",
         "husky": "^4.2.5",
         "jest": "^26.4.2",
@@ -32,15 +32,15 @@
         "rimraf": "^3.0.2"
     },
     "dependencies": {
-        "@babel/core": "^7.11.4",
-        "@wdio/config": "^6.1.14",
+        "@babel/core": "^7.11.5",
+        "@wdio/config": "^6.4.5",
         "@wdio/logger": "^6.0.16",
         "fs-extra": "^9.0.1",
         "lodash.clonedeep": "^4.5.0"
     },
     "husky": {
         "hooks": {
-            "pre-push": "npm run test.lint"
+            "pre-push": "npm run test.lint && npm run test.coverage"
         }
     }
 }

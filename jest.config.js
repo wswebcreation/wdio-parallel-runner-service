@@ -6,7 +6,7 @@ module.exports = {
         '<rootDir>/node_modules/'
     ],
     collectCoverageFrom: [
-        '<rootDir>/src/**/*.js'
+        '<rootDir>/src/**/{!(index),}.js'
     ],
     coverageDirectory: './coverage/',
     collectCoverage: true,

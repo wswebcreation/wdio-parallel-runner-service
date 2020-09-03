@@ -33,18 +33,18 @@ export default class ParallelRunnerLauncher {
         // Now iterate over each spec and split it into single it's per file
         currentSpecs.forEach(spec => {
             const file = readFileSync(spec, 'utf8');
-            // @TODO: this is crappy, but enough for an initial POC
-            const singleDescribe = file.match(/(describe\()/g).length === 1;
+            // @TODO: this is not really solid, need to think of a different way to make this:
+            // - solid
+            // - support TDD from mocha
+            const singleDescribe = (file.match(/((.?|x|f)describe\()/g)||[]).length === 1;
 
             if (singleDescribe) {
                 const ast = parseSync(file);
                 const describeIndex = findCalleeNameIndexes(ast.program.body, 'describe');
-                // console.log('describeIndex = ', describeIndex)
                 const itIndexes = findCalleeNameIndexes(
                     ast.program.body[describeIndex].expression.arguments[1].body.body,
                     'it',
                 );
-                // console.log('itIndexes = ', itIndexes)
 
                 // Now do the magic
                 createSingleTestFiles(ast, describeIndex, itIndexes, spec);
