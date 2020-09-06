@@ -9,6 +9,3 @@ script:
   - npm i
   - npm run test.coverage
   - npm run test.report
-
-after_script:
-  - npm run coveralls
