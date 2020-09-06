@@ -270,3 +270,9 @@ You like this module and want to help making it better? Awesome! Have a look int
 - [ ] Add support for conditional `it`s, see [Conditional its](#conditional-its)
 - [ ] Think of a better way to store the temporary files.
 This is currently difficult because we don't know the proper reference to the imports/page-objects and so on
+
+## Thanks
+A special thanks to:
+- [Nikolay Advolodkin](https://github.com/nadvolod) for always pushing the limits :wink:  and starting [this thread](https://github.com/webdriverio/webdriverio/issues/3962)
+- [Sean Poulter](https://github.com/seanpoulter) for showing an initial AST solution
+- [Christian Bromann](https://github.com/christian-bromann) for helping me out with all my WebdriverIO questions
