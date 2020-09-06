@@ -2,6 +2,7 @@ WebdriverIO Parallel Runner
 ===========================
 
 [![Build Status](https://travis-ci.com/wswebcreation/wdio-parallel-runner-service.svg?branch=master)](https://travis-ci.com/wswebcreation/wdio-parallel-runner-service)
+[![dependencies Status](https://david-dm.org/wswebcreation/wdio-parallel-runner-service/status.svg)](https://david-dm.org/wswebcreation/wdio-parallel-runner-service)
 
 > WebdriverIO Parallel Runner Service provides you the option to run each test in a test-file as a single test for optimizing parallelization.
 > - This can only be used with Jasmine and Mocha see [TODO](#todo)
