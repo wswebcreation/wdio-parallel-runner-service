@@ -1,0 +1,46 @@
+{
+    "name": "wdio-parallel-runner-service",
+    "version": "0.1.0-beta",
+    "description": "A WDIO service to run spec-files per test in parallel",
+    "main": "build/index.js",
+    "scripts": {
+        "clean": "rimraf coverage build .tmp",
+        "compile": "babel src/ --ignore **/*.spec.js -d build/",
+        "test.lint": "eslint ./src ./tests",
+        "test.coverage": "jest --coverage",
+        "watch": "npm run compile -- --watch",
+        "release": "np",
+        "precompile": "npm run clean",
+        "prepublish": "npm run compile",
+        "prerelease": "npm run compile"
+    },
+    "keywords": [
+        "webdriverio",
+        "parallel"
+    ],
+    "author": "wswebcreation",
+    "license": "MIT",
+    "devDependencies": {
+        "@babel/cli": "^7.11.5",
+        "@babel/preset-env": "^7.11.5",
+        "babel-eslint": "^10.1.0",
+        "eslint": "^7.8.1",
+        "eslint-plugin-import": "^2.22.0",
+        "husky": "^4.2.5",
+        "jest": "^26.4.2",
+        "np": "^6.5.0",
+        "rimraf": "^3.0.2"
+    },
+    "dependencies": {
+        "@babel/core": "^7.11.5",
+        "@wdio/config": "^6.4.5",
+        "@wdio/logger": "^6.0.16",
+        "fs-extra": "^9.0.1",
+        "lodash.clonedeep": "^4.5.0"
+    },
+    "husky": {
+        "hooks": {
+            "pre-push": "npm run test.lint && npm run test.coverage"
+        }
+    }
+}
