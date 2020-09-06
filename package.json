@@ -1,6 +1,6 @@
 {
     "name": "wdio-parallel-runner-service",
-    "version": "0.1.0-beta",
+    "version": "0.1.0",
     "description": "A WDIO service to run spec-files per test in parallel",
     "main": "build/index.js",
     "scripts": {
