@@ -21,6 +21,14 @@
     ],
     "author": "wswebcreation",
     "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/wswebcreation/wdio-parallel-runner-service.git"
+    },
+    "bugs": {
+        "url": "https://github.com/wswebcreation/wdio-parallel-runner-service/issues"
+    },
+    "homepage": "https://github.com/wswebcreation/wdio-parallel-runner-service#readme",
     "devDependencies": {
         "@babel/cli": "^7.11.5",
         "@babel/preset-env": "^7.11.5",
