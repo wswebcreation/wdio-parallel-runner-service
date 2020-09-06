@@ -194,7 +194,7 @@ The temporary files will be removed when the tests have been executed.
 > next to your original folder. There is currently no solution for this.
 
 ## What is not supported (yet)!
-## TypeScript
+### TypeScript
 This module currently doesn't support TypeScript
 
 ### Conditional its
@@ -255,6 +255,9 @@ describe('Foo (2-2)', () => {
 ### Clean up temporary files
 If WebdriverIO breaks somewhere before the test have been finished you might have a bunch of extra files in your folder
 next to your original folder. There is currently no solution for this.
+
+## Contributing
+You like this module and want to help making it better? Awesome! Have a look into our [Contributor Guide](./docs/CONTRIBUTING.md) to get started with setting up the repo.
 
 ## TODO
 - [ ] Add support to split TypeScript files, see [TypeScript](#typescript)
